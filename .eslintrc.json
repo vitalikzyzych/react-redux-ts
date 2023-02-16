@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "google",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "18.2.0"
+    }
+  },
+  "globals": {
+    "google": true,
+    "document": true,
+    "window": true
+  },
+  "rules": {
+    "no-invalid-this": "off",
+    "react/prop-types": "off",
+    "require-jsdoc": "off",
+    "camelcase": "off",
+    "no-unused-vars": "error",
+    "no-undef": "error",
+    "no-multiple-empty-lines": "error",
+    "react/react-in-jsx-scope": "off",
+    "comma-dangle": "off",
+    "class-methods-use-this": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "implicit-arrow-linebreak": "off",
+    "import/prefer-default-export": "off",
+    "prettier/prettier": ["error", { "singleQuote": true, "endOfLine": "auto" }]
+  },
+  "env": {
+    "node": true,
+    "es2021": true,
+    "jest": true,
+    "browser": true
+  },
+  "plugins": ["@typescript-eslint", "prettier"]
+}
