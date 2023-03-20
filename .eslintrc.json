@@ -22,7 +22,8 @@
   "globals": {
     "google": true,
     "document": true,
-    "window": true
+    "window": true,
+    "JSX": true
   },
   "rules": {
     "no-invalid-this": "off",
@@ -39,6 +40,7 @@
     "import/extensions": "off",
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": ["error", { "singleQuote": true, "endOfLine": "auto" }]
   },
   "env": {
