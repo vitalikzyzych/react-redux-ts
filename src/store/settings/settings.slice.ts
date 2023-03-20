@@ -23,7 +23,7 @@ const userSlice = createSlice({
 
       if (reload) {
         setTimeout(() => {
-          window.location.replace('/');
+          window.location.replace('/' + currentService);
         }, 100);
       }
     },
