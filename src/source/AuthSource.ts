@@ -38,9 +38,8 @@ const initKeycloak = async (onAuthenticatedCallback: () => void) => {
 const doLogin = keycloak.login;
 
 const doLogout = async () => {
+  // eslint-disable-next-line no-unused-vars
   const res = await keycloak.init({});
-  console.log(res);
-  console.log(keycloak);
   keycloak.logout();
   localStorage.removeItem('keycloak-token');
 };
@@ -62,7 +61,6 @@ const isTokenValid = () => {
     return false;
   }
   const decodedToken = jwtDecode(token) as IDecodedToken;
-  console.log(decodedToken);
   const utcSeconds = decodedToken.exp;
   const expiredDate = new Date(0);
   expiredDate.setUTCSeconds(utcSeconds);
