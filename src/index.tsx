@@ -5,13 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { App } from 'components';
 import { rootStore } from 'core/app/rootStore';
+import { initKeycloak } from 'source/AuthSource';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
-root.render(
-  <Provider store={rootStore}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-);
+const renderApp = () =>
+  root.render(
+    <Provider store={rootStore}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>,
+  );
+
+initKeycloak(renderApp);

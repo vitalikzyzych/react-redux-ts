@@ -5,10 +5,15 @@ import AppMenu from './AppMenu';
 import { useSelector } from 'react-redux';
 import { settingsSelector } from 'store/settings';
 import ServiceSelector from './ServiceSelector';
+import { getDecodedItem, doLogout } from 'source/AuthSource';
 
 const AppTopbar = (props: any) => {
-  const onTopbarSubItemClick = (event: any) => {
+  const onTopbarSubItemClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+  };
+
+  const handleLogout = async () => {
+    await doLogout();
   };
 
   // const dispatch = useDispatch<AppDispatch>();
@@ -70,14 +75,14 @@ const AppTopbar = (props: any) => {
               })}
             >
               <button className="p-link" onClick={props.onTopbarItemClick}>
-                <img src="assets/layout/images/profile-image.png" alt="profile" />
+                <img src="assets/layout/images/avatar.png" alt="profile" />
               </button>
 
               <ul className="fadeInDown">
                 <li role="menuitem">
                   <button className="p-link" onClick={onTopbarSubItemClick}>
                     <i className="pi pi-fw pi-user"></i>
-                    <span>Profile</span>
+                    <span>{getDecodedItem('preferred_username')}</span>
                   </button>
                 </li>
                 <li role="menuitem">
@@ -87,7 +92,7 @@ const AppTopbar = (props: any) => {
                   </button>
                 </li>
                 <li role="menuitem">
-                  <button className="p-link" onClick={onTopbarSubItemClick}>
+                  <button className="p-link" onClick={handleLogout}>
                     <i className="pi pi-fw pi-sign-out"></i>
                     <span>Logout</span>
                   </button>

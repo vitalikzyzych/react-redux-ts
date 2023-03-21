@@ -1,9 +1,15 @@
 import React, { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { classNames } from 'primereact/utils';
+import { doLogout, getDecodedItem } from 'source/AuthSource';
 
 const AppInlineMenu = (props: any) => {
   const menuRef = useRef(null);
+
+  const handleLogout = async () => {
+    // event.preventDefault();
+    await doLogout();
+  };
 
   const isSlim = () => {
     return props.menuMode === 'slim';
@@ -34,11 +40,11 @@ const AppInlineMenu = (props: any) => {
             onClick={props.onChangeActiveInlineMenu}
           >
             <img
-              src="assets/layout/images/profile-image.png"
+              src="assets/layout/images/avatar.png"
               alt="avatar"
               style={{ width: '44px', height: '44px' }}
             />
-            <span className="layout-inline-menu-text">Gene Russell</span>
+            <span className="layout-inline-menu-text">{getDecodedItem('preferred_username')}</span>
             <i className="layout-inline-menu-icon pi pi-angle-down"></i>
           </button>
           <CSSTransition
@@ -50,7 +56,7 @@ const AppInlineMenu = (props: any) => {
           >
             <ul ref={menuRef} className="layout-inline-menu-action-panel">
               <li className="layout-inline-menu-action-item">
-                <button className="p-link">
+                <button className="p-link" onClick={handleLogout}>
                   <i className="pi pi-power-off pi-fw"></i>
                   <span>Logout</span>
                 </button>
