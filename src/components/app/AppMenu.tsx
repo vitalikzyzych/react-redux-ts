@@ -5,6 +5,7 @@ import { classNames } from 'primereact/utils';
 import AppInlineMenu from './AppInlineMenu';
 import { Ripple } from 'primereact/ripple';
 import { Badge } from 'primereact/badge';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AppSubmenu = forwardRef((props: any, ref: any) => {
   const [activeIndex, setActiveIndex] = useState<any>(null);
@@ -97,10 +98,9 @@ const AppSubmenu = forwardRef((props: any, ref: any) => {
   };
 
   const getLink = (item: any, index: any) => {
-    const menuitemIconClassName = classNames('layout-menuitem-icon', item.icon);
     const content = (
       <>
-        <i className={menuitemIconClassName}></i>
+        <FontAwesomeIcon size="1x" icon={['fal', item.icon]} />
         <span className="layout-menuitem-text">{item.label}</span>
         {item.items && <i className="pi pi-fw pi-chevron-down  layout-submenu-toggler"></i>}
         {item.badge && <Badge value={item.badge} severity="success" />}
