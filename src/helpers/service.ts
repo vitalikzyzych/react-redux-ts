@@ -12,3 +12,16 @@ export const getApiUrl = () => {
       return process.env.REACT_APP_SMS_API_BASE_URL;
   }
 };
+
+export const getAnalyticsUrl = () => {
+  switch (service) {
+    case 'pay':
+      return process.env.REACT_APP_ANALYTICS_BASE_URL;
+    case 'sms':
+      return process.env.REACT_APP_ANALYTICS_BASE_URL;
+    case 'survey':
+      return process.env.REACT_APP_ANALYTICS_BASE_URL;
+    default:
+      return process.env.REACT_APP_ANALYTICS_BASE_URL;
+  }
+};

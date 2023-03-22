@@ -1,16 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { senderIdsList } from './senderId.actions';
-import { InitialState, SenderId } from './senderId.types';
-
-// import { getPayloadIds } from 'store/helpers';
+import { customerList } from './customer.actions';
+import { InitialState, Customer } from './customer.types';
 
 const initialState: InitialState = {
-  list: [] as Array<SenderId>,
+  list: [] as Array<Customer>,
   isLoading: false,
 };
 
 const userSlice = createSlice({
-  name: 'senderId',
+  name: 'customer',
   initialState,
   reducers: {
     clearList: (state) => {
@@ -18,15 +16,15 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(senderIdsList.pending, (state) => {
+    builder.addCase(customerList.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(senderIdsList.fulfilled, (state, { payload }) => {
+    builder.addCase(customerList.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.list = payload;
     });
-    builder.addCase(senderIdsList.rejected, (state) => {
-      state.isLoading = true;
+    builder.addCase(customerList.rejected, (state) => {
+      state.isLoading = false;
     });
   },
 });

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from 'core/app/rootStore';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from 'primereact/utils';
 import AppMenu from './AppMenu';
@@ -6,8 +8,15 @@ import { useSelector } from 'react-redux';
 import { settingsSelector } from 'store/settings';
 import ServiceSelector from './ServiceSelector';
 import { getDecodedItem, doLogout } from 'source/AuthSource';
+import { customerList } from 'store/customer';
 
 const AppTopbar = (props: any) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(customerList());
+  }, []);
+
   const onTopbarSubItemClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
