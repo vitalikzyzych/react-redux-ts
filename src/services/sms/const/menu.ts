@@ -17,14 +17,31 @@ export default [
         to: ROUTES.SENDER_IDS_NEW,
       },
       {
-        label: 'Approval',
+        label: 'Sender IDs Approval',
         icon: 'pi pi-prime',
         to: ROUTES.SENDER_IDS_APPROVAL,
       },
       {
-        label: 'History',
+        label: 'Sender IDs History',
         icon: 'pi pi-prime',
         to: ROUTES.SENDER_IDS_HISTORY,
+      },
+    ],
+  },
+
+  {
+    label: 'Routing',
+    icon: 'pi pi-prime',
+    items: [
+      {
+        label: 'New Routing',
+        icon: 'pi pi-prime',
+        to: ROUTES.ROUTING_NEW,
+      },
+      {
+        label: 'Routing History',
+        icon: 'pi pi-prime',
+        to: ROUTES.ROUTING_HISTORY,
       },
     ],
   },

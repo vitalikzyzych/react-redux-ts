@@ -40,7 +40,6 @@ const formatCubeResponse = (
 export const customerList = createAsyncThunk('customer/list', async () => {
   try {
     const customerIds = JSON.parse(localStorage.getItem('customers') as string) as Array<Customer>;
-    // console.log(localSenderIds);
     if (customerIds?.length) {
       return customerIds;
     } else {

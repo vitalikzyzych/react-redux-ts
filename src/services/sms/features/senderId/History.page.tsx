@@ -12,25 +12,28 @@ import { formattedDateTime } from 'utils';
 import { Status } from 'components';
 import { Button } from 'primereact/button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 const UsersScreen: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
-
   const { list: customers } = useSelector(customerSelector);
   const { list: senderIds, isLoading } = useSelector(senderIdSelector);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [filteredSenderIds, setFilteredSenderIds] = useState(senderIds);
 
   const handleCustomerSelected = (e: DropdownChangeEvent) => {
-    console.log(e);
     setSelectedCustomer(e.value);
+    setFilteredSenderIds(
+      e.value ? senderIds.filter((senderId) => senderId.customerId === e.value) : senderIds,
+    );
   };
 
   useEffect(() => {
     dispatch(senderIdsList());
   }, []);
 
-  console.log(senderIds);
+  useEffect(() => {
+    setFilteredSenderIds(senderIds);
+  }, [senderIds]);
 
   return (
     <div className="grid">
@@ -52,9 +55,9 @@ const UsersScreen: React.FC = () => {
         <h3 className="font-normal">Sender IDs History</h3>
         <DataTable
           loading={isLoading}
-          paginator={senderIds?.length > 10}
+          paginator={filteredSenderIds?.length > 10}
           rows={10}
-          value={senderIds}
+          value={filteredSenderIds}
           showGridlines
           // tableStyle={{ minWidth: '50rem' }}
         >
@@ -74,15 +77,19 @@ const UsersScreen: React.FC = () => {
             header="Actions"
             body={(data) => (
               <>
-                <Button
-                  icon={<FontAwesomeIcon size="1x" icon={['fal', 'check']} />}
-                  className="p-button-success"
-                  style={{ marginRight: '.5em' }}
-                />
-                <Button
-                  icon={<FontAwesomeIcon size="1x" icon={['fal', 'ban']} />}
-                  className="p-button-danger"
-                />
+                {data.status === 'REJECTED' && (
+                  <Button
+                    icon={<FontAwesomeIcon size="1x" icon={['fal', 'check']} />}
+                    className="p-button-success"
+                    style={{ marginRight: '.5em' }}
+                  />
+                )}
+                {data.status === 'APPROVED' && (
+                  <Button
+                    icon={<FontAwesomeIcon size="1x" icon={['fal', 'ban']} />}
+                    className="p-button-danger"
+                  />
+                )}
               </>
             )}
           />
